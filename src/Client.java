@@ -6,8 +6,15 @@ public class Client {
     private String phoneNumber;
     private List<String> messages;
 
-    public void sendRequest(){
+    public Client(String firstName, String secondName, String phoneNumber) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.phoneNumber = phoneNumber;
+    }
 
+    public void sendRequest(String content, String phone, RequestType typeOfRequest){
+        Request request = new Request(content, this, phone, typeOfRequest);
+        RequestsQueue.addNewRequest(request);
     }
 
     public String getFirstName() {
