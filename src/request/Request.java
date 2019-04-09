@@ -1,3 +1,6 @@
+package request;
+
+import client.Client;
 
 public class Request {
 

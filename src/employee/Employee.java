@@ -1,3 +1,10 @@
+package employee;
+
+
+import client.Client;
+import message.Message;
+import request.Request;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,21 +12,21 @@ public abstract class Employee {
     private boolean isAvailable = true;
     protected String level;
     private Employee nextEmployee;
-    private List<Employee> subordinates = new ArrayList<>();
+    protected List<Employee> subordinates = new ArrayList<>();
     private Department department;
 
     public void setNextEmployee(Employee employee){
         this.nextEmployee = employee;
     }
 
-    public void verifyCompatibility(RequestType requestType){
-        if(this.level.equals(requestType.toString()) && this.isAvailable){
-            this.handleRequest();
+    public void verifyCompatibility(Request request){
+        if(this.level.equals(request.getRequestType().toString()) && this.isAvailable){
+            this.handleRequest(request);
         }
         else{
             if(nextEmployee != null){
                 System.out.println("Request passed");
-                nextEmployee.verifyCompatibility(requestType);
+                nextEmployee.verifyCompatibility(request);
             }
         }
     }
@@ -37,7 +44,8 @@ public abstract class Employee {
         }
     }
 
-    protected abstract void handleRequest();
+    protected abstract void handleRequest(Request request);
+    protected abstract void sendResponseToClient(Message message, Client client);
 
     public boolean isAvailable() {
         return isAvailable;
@@ -51,9 +59,8 @@ public abstract class Employee {
         return nextEmployee;
     }
 
-    public List<Employee> getSubordonates() {
-        return subordinates;
-    }
+    public abstract List<Employee> getSubordinates();
+
 
     public void setSubordonates(List<Employee> subordonates) {
         this.subordinates = subordonates;
@@ -65,15 +72,13 @@ public abstract class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+        department.addEmployee(this);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "isAvailable=" + isAvailable +
-                ", level=" + level +
-                ", nextEmployee=" + nextEmployee +
-                ", subordinates=" + subordinates +
+                "level=" + level +
                 ", department=" + department +
                 '}';
     }
