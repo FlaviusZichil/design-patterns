@@ -4,6 +4,8 @@ import client.Client;
 import message.Message;
 import message.MessageDispacher;
 import request.Request;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class QuestionEmployee extends Employee {
@@ -15,7 +17,8 @@ public class QuestionEmployee extends Employee {
     @Override
     protected void handleRequest(Request request) {
         System.out.println("Request resolved by a questionEmployee");
-        Message message = new Message("Raspunsul la inrebarea " + request.getContent() + " despre telefonul " + request.getPhone(), request.getClient());
+        LocalDate currentDate = LocalDate.now();
+        Message message = new Message("Raspunsul la inrebarea " + request.getContent() + " despre telefonul " + request.getPhone(), request.getClient(), currentDate.toString());
         sendResponseToClient(message, request.getClient());
     }
 

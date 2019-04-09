@@ -5,6 +5,7 @@ import message.Message;
 import message.MessageDispacher;
 import request.Request;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class BuyEmployee extends Employee {
     @Override
     protected void handleRequest(Request request) {
         System.out.println("Request resolved by a buyEmployee");
-        Message message = new Message("Ati comandat telefonul " + request.getPhone(), request.getClient());
+        LocalDate currentDate = LocalDate.now();
+        Message message = new Message("Ati comandat telefonul " + request.getPhone(), request.getClient(), currentDate.toString());
         sendResponseToClient(message, request.getClient());
     }
 

@@ -1,4 +1,4 @@
-package employee;
+package department;
 
 import employee.Employee;
 import java.util.ArrayList;

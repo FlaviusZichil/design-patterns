@@ -2,6 +2,7 @@ package employee;
 
 
 import client.Client;
+import department.Department;
 import message.Message;
 import request.Request;
 
