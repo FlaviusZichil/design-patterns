@@ -2,15 +2,26 @@
 
 public abstract class Phone {
     private int id;
+    private int price;
     private Brand brand;
     private String model;
     private String color;
 
-    public Phone(int id, Brand brand, String model, String color) {
+    public Phone(int id, int price, Brand brand, String model, String color) {
         this.id = id;
+        this.price = price;
         this.brand = brand;
         this.model = model;
         this.color = color;
+    }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getId() {
