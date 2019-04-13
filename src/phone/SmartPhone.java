@@ -5,10 +5,10 @@ import phone.Color;
 import phone.Phone;
 import phone.PhoneType;
 
-public class SmartPhone  extends Phone {
+public class SmartPhone extends Phone {
 
     public SmartPhone(int id, int price, Brand brand, String model, Color color, int storage, int memory, String display) {
-        super(price, brand, model, color, storage, memory, display);
+        super(id, price, brand, model, color, storage, memory, display);
         setAccessories();
     }
 
@@ -23,15 +23,15 @@ public class SmartPhone  extends Phone {
 
     @Override
     public void assemble(Color color, int memory, int storage, String display) {
-        this.color=color;
-        this.memory+=memory;
-        this.storage+=storage;
-        this.display=display;
+        this.setColor(color);
+        this.setMemory(getMemory() + memory);
+        this.setStorage(getStorage() + storage);
+        this.setDisplay(display);
     }
 
     @Override
     public void setAccessories() {
-        accessories+=2000;
+        this.setAccessories(this.getAccessories() + 2000);
     }
 
 }

@@ -1,4 +1,6 @@
+
 package phone;
+
 
 public enum PhoneType {
     FLIPPHONE,

@@ -1,13 +1,24 @@
+
+package client;
+
+import message.Message;
+import request.Request;
+import request.RequestType;
+import request.RequestsQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Client {
     private String firstName;
     private String secondName;
     private String phoneNumber;
-    private List<String> messages;
+    private List<Message> messages = new ArrayList<>();
 
     public Client(String firstName, String secondName, String phoneNumber) {
         this.firstName = firstName;
@@ -22,6 +33,12 @@ public class Client {
 
 
 
+
+    public void addMessage(Message message) {
+        this.messages.add(message);
+    }
+
+
     public String getFirstName() {
         return firstName;
     }
@@ -34,7 +51,7 @@ public class Client {
         return phoneNumber;
     }
 
-    public List<String> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
@@ -48,10 +65,6 @@ public class Client {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public void addMessages(String messages) {
-        this.messages.add(messages);
     }
 
     @Override

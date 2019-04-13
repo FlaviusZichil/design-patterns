@@ -1,10 +1,11 @@
+
 package phone;
 
 
 public class FlipPhone extends Phone {
 
     public FlipPhone(int id, int price, Brand brand, String model, Color color, int storage, int memory, String display) {
-        super(price, brand, model, color, storage, memory, display);
+        super(id, price, brand, model, color, storage, memory, display);
         setAccessories();
     }
 
@@ -19,15 +20,15 @@ public class FlipPhone extends Phone {
 
     @Override
     public void assemble(Color color, int memory, int storage, String display) {
-        this.color=color;
-        this.memory+=memory;
-        this.storage+=storage;
-        this.display=display;
+        this.setColor(color);
+        this.setMemory(getMemory() + memory);
+        this.setStorage(getStorage() + storage);
+        this.setDisplay(display);
     }
 
     @Override
     public void setAccessories() {
-        accessories+=1500;
+        setAccessories(this.getAccessories() + 1500);
     }
 
 }

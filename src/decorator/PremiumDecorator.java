@@ -1,15 +1,21 @@
+package decorator;
+
+import decorator.ExtraPackage;
+import decorator.PhoneDecorator;
+import phone.Phone;
+
 public class PremiumDecorator extends PhoneDecorator {
     public PremiumDecorator(Phone decoratedPhone) {
         super(decoratedPhone);
-        extraPackage = ExtraPackage.PREMIUM;
+        setExtraPackage(ExtraPackage.PREMIUM);
         setAccessories();
     }
 
     @Override
     public void setAccessories() {
-        memory += 2;
-        storage += 4;
-        accessories += 8000;
-        display="AMOLED";
+        setMemory(decoratedPhone.getMemory() + 2);
+        setStorage(decoratedPhone.getStorage() + 4);
+        setAccessories(decoratedPhone.getAccessories() + 8000);
+        setDisplay("AMOLED");
     }
 }

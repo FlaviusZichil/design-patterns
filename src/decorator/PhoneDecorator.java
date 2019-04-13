@@ -1,29 +1,31 @@
+package decorator;
+
+import phone.Color;
+import phone.Phone;
 
 public  class PhoneDecorator extends Phone implements IPhone {
     public Phone decoratedPhone;
 
-    public PhoneDecorator(Phone decoratedPhone)
-    {
+    public PhoneDecorator(Phone decoratedPhone) {
         this.decoratedPhone = decoratedPhone;
-        this.id=decoratedPhone.id;
-        this.price=decoratedPhone.price;
-        this.brand=decoratedPhone.brand;
-        this.model=decoratedPhone.model;
-        this.color=decoratedPhone.color;
-        this.storage=decoratedPhone.storage;
-        this.memory=decoratedPhone.memory;
-        this.display=decoratedPhone.display;
-        this.accessories=decoratedPhone.accessories;
-        this.extraPackage=ExtraPackage.NORMAL;
+        decoratedPhone.setPrice(decoratedPhone.getPrice());
+        decoratedPhone.setBrand(decoratedPhone.getBrand());
+        decoratedPhone.setModel(decoratedPhone.getModel());
+        setColor(decoratedPhone.getColor());
+        decoratedPhone.setStorage(decoratedPhone.getStorage());
+        decoratedPhone.setMemory(decoratedPhone.getMemory());
+        decoratedPhone.setDisplay(decoratedPhone.getDisplay());
+        setAccessories(decoratedPhone.getAccessories());
+        setExtraPackage(ExtraPackage.NORMAL);
 
     }
 
     @Override
     public void assemble(Color color, int memory, int storage, String display) {
-        this.color=color;
-        this.memory+=memory;
-        this.storage+=storage;
-        this.display=display;
+        setColor(color);
+        setMemory(decoratedPhone.getMemory() + memory);
+        setStorage(decoratedPhone.getStorage() + storage);
+        setDisplay(display);
         decoratedPhone.assemble(color,memory,storage,display);
     }
 
@@ -33,10 +35,9 @@ public  class PhoneDecorator extends Phone implements IPhone {
     }
 
 
-
     @Override
     public String toString() {
-        return "Assemble with -->"+" Color: "+color+" Storage: "+storage+" Memory: "+memory+" Display: "+display+
-                " Package: "+extraPackage+" Value of accessories: "+accessories;
+        return "Assemble with -->" + " Color: " + getColor() + " Storage: " + getStorage() + " Memory: " + getMemory() + " Display: " + getDisplay() +
+                " Package: " + getExtraPackage() + " Value of accessories: " + getAccessories();
     }
 }

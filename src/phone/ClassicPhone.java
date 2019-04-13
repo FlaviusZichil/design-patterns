@@ -9,7 +9,7 @@ public class ClassicPhone extends Phone {
     }
 
     public ClassicPhone(int id, int price, Brand brand, String model, Color color, int storage, int memory, String display) {
-        super(price, brand, model, color, storage, memory, display);
+        super(id, price, brand, model, color, storage, memory, display);
         setAccessories();
     }
 
@@ -20,16 +20,13 @@ public class ClassicPhone extends Phone {
 
     @Override
     public void assemble(Color color, int memory, int storage, String display) {
-        this.color=color;
-        this.memory+=memory;
-        this.storage+=storage;
-        this.display=display;
-        extraPackage = ExtraPackage.NORMAL;
+
+
     }
 
     @Override
     public void setAccessories() {
-        accessories+=1000;
+        this.setAccessories(this.getAccessories() + 1000);
     }
 
 }

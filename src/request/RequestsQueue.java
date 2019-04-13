@@ -1,3 +1,5 @@
+package request;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +17,7 @@ public class RequestsQueue {
     public static void removeRequestFromQueue(Request request){
         if(requests.size() != 0 && requests.contains(request)){
             requests.remove(request);
-        }
-        else{
+        } else {
             System.out.println("No such request ot request already completed");
         }
     }
