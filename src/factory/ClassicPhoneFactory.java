@@ -5,7 +5,7 @@ import phone.ClassicPhone;
 import phone.Color;
 import phone.Phone;
 
-public class ClassicPhoneFactory extends PhoneFactory {
+public class ClassicPhoneFactory extends factory.PhoneFactory {
     @Override
     public Phone getPhone(int price, Brand brand, String model, Color color, int memory, int storage, String display) {
         lastId++;
@@ -14,6 +14,5 @@ public class ClassicPhoneFactory extends PhoneFactory {
 
     @Override
     public void setAccessories() {
-
     }
 }
