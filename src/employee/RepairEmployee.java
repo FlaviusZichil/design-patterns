@@ -17,6 +17,12 @@ public class RepairEmployee extends Employee {
 
     @Override
     protected void handleRequest(Request request) {
+        System.out.println("Request received by a repairEmployee");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("Request resolved by a repairEmployee");
         LocalDate currentDate = LocalDate.now();
         Message message = new Message("Telefonul " + request.getPhone() + " a fost reparat. Il puteti ridica de la sediul nostru.", request.getClient(), currentDate.toString());
