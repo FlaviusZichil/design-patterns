@@ -1,3 +1,7 @@
+package phone;
+
+import decorator.ExtraPackage;
+import decorator.IPhone;
 
 public abstract class Phone implements IPhone {
     private int id;

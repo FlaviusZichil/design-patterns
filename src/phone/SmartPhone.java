@@ -1,3 +1,4 @@
+package phone;
 
 public class SmartPhone  extends Phone {
 

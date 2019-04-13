@@ -1,3 +1,7 @@
+package decorator;
+
+import phone.Phone;
+
 public class PremiumDecorator extends PhoneDecorator {
     public PremiumDecorator(Phone decoratedPhone) {
         super(decoratedPhone);

@@ -16,7 +16,15 @@ public class QuestionEmployee extends Employee {
 
     @Override
     protected void handleRequest(Request request) {
+        System.out.println("Request received by a questionEmployee");
+        try {
+            System.out.println("Answering...");
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("Request resolved by a questionEmployee");
+
         LocalDate currentDate = LocalDate.now();
         Message message = new Message("Raspunsul la inrebarea " + request.getContent() + " despre telefonul " + request.getPhone(), request.getClient(), currentDate.toString());
         sendResponseToClient(message, request.getClient());
@@ -25,6 +33,7 @@ public class QuestionEmployee extends Employee {
     @Override
     protected void sendResponseToClient(Message message, Client client) {
         MessageDispacher.sendMessageToClient(message, client);
+        System.out.println("--> Message sent from question employee to client");
     }
 
     @Override

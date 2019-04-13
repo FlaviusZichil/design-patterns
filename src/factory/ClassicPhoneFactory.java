@@ -1,3 +1,9 @@
+package factory;
+
+import phone.Brand;
+import phone.ClassicPhone;
+import phone.Color;
+import phone.Phone;
 
 public class ClassicPhoneFactory extends PhoneFactory {
     @Override

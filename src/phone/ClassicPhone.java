@@ -1,3 +1,5 @@
+package phone;
+
 public class ClassicPhone  extends Phone  {
 
     public ClassicPhone() {

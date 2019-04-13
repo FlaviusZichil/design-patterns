@@ -19,11 +19,13 @@ public class RepairEmployee extends Employee {
     protected void handleRequest(Request request) {
         System.out.println("Request received by a repairEmployee");
         try {
+            System.out.println("Repairing...");
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("Request resolved by a repairEmployee");
+
         LocalDate currentDate = LocalDate.now();
         Message message = new Message("Telefonul " + request.getPhone() + " a fost reparat. Il puteti ridica de la sediul nostru.", request.getClient(), currentDate.toString());
         sendResponseToClient(message, request.getClient());
@@ -32,6 +34,7 @@ public class RepairEmployee extends Employee {
     @Override
     protected void sendResponseToClient(Message message, Client client) {
         MessageDispacher.sendMessageToClient(message, client);
+        System.out.println("--> Message sent from repair employee to client");
     }
 
     @Override

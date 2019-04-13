@@ -1,3 +1,7 @@
+package decorator;
+
+import phone.Color;
+import phone.Phone;
 
 public  class PhoneDecorator extends Phone implements IPhone {
     public Phone decoratedPhone;
@@ -14,7 +18,6 @@ public  class PhoneDecorator extends Phone implements IPhone {
         decoratedPhone.setDisplay(decoratedPhone.getDisplay());
         setAccessories(decoratedPhone.getAccessories());
         setExtraPackage(ExtraPackage.NORMAL);
-
     }
 
     @Override
