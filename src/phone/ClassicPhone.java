@@ -1,4 +1,8 @@
-public class ClassicPhone  extends Phone  {
+package phone;
+
+import decorator.ExtraPackage;
+
+public class ClassicPhone extends Phone {
 
     public ClassicPhone() {
         setAccessories();
@@ -20,7 +24,7 @@ public class ClassicPhone  extends Phone  {
         this.memory+=memory;
         this.storage+=storage;
         this.display=display;
-        extraPackage=ExtraPackage.NORMAL;
+        extraPackage = ExtraPackage.NORMAL;
     }
 
     @Override

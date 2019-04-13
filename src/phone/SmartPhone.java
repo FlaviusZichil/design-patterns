@@ -1,3 +1,10 @@
+package phone;
+
+import phone.Brand;
+import phone.Color;
+import phone.Phone;
+import phone.PhoneType;
+
 public class SmartPhone  extends Phone {
 
     public SmartPhone(int id, int price, Brand brand, String model, Color color, int storage, int memory, String display) {

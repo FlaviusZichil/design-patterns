@@ -1,4 +1,7 @@
+package phone;
 
+import decorator.ExtraPackage;
+import decorator.IPhone;
 
 public abstract class Phone implements IPhone {
     protected int id;
@@ -11,6 +14,7 @@ public abstract class Phone implements IPhone {
     protected String display;
     protected int accessories;
     protected ExtraPackage extraPackage;
+
 
     @Override
     public void assemble(Color color, int memory, int storage, String display) {

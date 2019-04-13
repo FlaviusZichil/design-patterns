@@ -1,3 +1,7 @@
+package stock;
+
+import phone.Phone;
+
 import java.util.ArrayList;
 import java.util.List;
 

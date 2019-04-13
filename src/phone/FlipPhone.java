@@ -1,3 +1,6 @@
+package phone;
+
+
 public class FlipPhone extends Phone {
 
     public FlipPhone(int id, int price, Brand brand, String model, Color color, int storage, int memory, String display) {
