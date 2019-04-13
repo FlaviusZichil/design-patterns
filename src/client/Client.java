@@ -1,6 +1,7 @@
 package client;
 
 import message.Message;
+import phone.Phone;
 import request.Request;
 import request.RequestType;
 import request.RequestsQueue;
@@ -20,8 +21,19 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public void sendRequest(String content, String phone, RequestType typeOfRequest){
-        Request request = new Request(content, this, phone, typeOfRequest);
+    public void sendRequest(String content, Phone phone, RequestType typeOfRequest){
+        List<Request> requests = RequestsQueue.getRequests();
+        Request request;
+
+        if(requests.size() > 0){
+            Request lastAddedRequest = requests.get(requests.size() - 1);
+            Integer nextRequsetId = lastAddedRequest.getRequestId() + 1;
+            request = new Request(nextRequsetId, content, this, phone, typeOfRequest);
+        }
+        else{
+            request = new Request(0, content, this, phone, typeOfRequest);
+        }
+
         RequestsQueue.addNewRequest(request);
     }
 

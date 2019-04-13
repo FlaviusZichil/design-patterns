@@ -4,6 +4,7 @@ import client.Client;
 import message.Message;
 import message.MessageDispacher;
 import request.Request;
+import request.RequestsQueue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class BuyEmployee extends Employee {
         }
         System.out.println("Request resolved by a buyEmployee");
 
+        RequestsQueue.getResolvedRequests().add(request);
+        RequestsQueue.removeRequestFromQueue(request);
+
         LocalDate currentDate = LocalDate.now();
         Message message = new Message("Ati comandat telefonul " + request.getPhone(), request.getClient(), currentDate.toString());
         sendResponseToClient(message, request.getClient());
@@ -35,6 +39,7 @@ public class BuyEmployee extends Employee {
     protected void sendResponseToClient(Message message, Client client) {
         MessageDispacher.sendMessageToClient(message, client);
         System.out.println("--> Message sent from buy employee to client");
+        System.out.println("============================================");
     }
 
     @Override
