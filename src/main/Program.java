@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 public class Program {
 
-    public void manufacturerOption(Scanner sc) {
+    private static void openManufacturerWindow(Scanner sc) {
         int myOption;
         Phone phone=null;
         System.out.println("1.Create phone \n2.Decorate phone");
@@ -60,7 +60,7 @@ public class Program {
         }
 
     }
-    public Phone selectAndCreatePhone(int option,Scanner sc){
+    public static  Phone selectAndCreatePhone(int option,Scanner sc){
         Phone phone=null;
         switch (option) {
             case 1:
@@ -79,24 +79,24 @@ public class Program {
         return phone;
 
     }
-    public PhoneDecorator decorateWithPlusPackage (Phone decoratedPhone){
-        System.out.println("Your benefits: + 1 RAM memory, + 3GB , + OLED display, + 7000 accessories");
+    public static  PhoneDecorator decorateWithPlusPackage (Phone decoratedPhone){
+        System.out.println("==PLUS PACKAGE==Your benefits: + 1 RAM memory, + 3GB , + OLED display, + 7000 accessories");
         PlusDecorator plusDecorator=new PlusDecorator(decoratedPhone);
         System.out.println("Assemble with plus package: ");
         System.out.println(plusDecorator.toString());
         return plusDecorator;
     }
-    public PhoneDecorator decorateWithPremiumPackage(Phone decoratedPhone){
-        System.out.println("Your benefits: + 2 RAM memory, + 4GB , + AMOLED display, + 8000 accessories");
+    public static PhoneDecorator decorateWithPremiumPackage(Phone decoratedPhone){
+        System.out.println("==PREMIUM PACKAGE==Your benefits: + 2 RAM memory, + 4GB , + AMOLED display, + 8000 accessories");
         PremiumDecorator premiumDecorator=new PremiumDecorator(decoratedPhone);
         System.out.println("Assemble with premium package: ");
         System.out.println(premiumDecorator.toString());
         return premiumDecorator;
     }
-    public Phone readPhoneSpecification(int optionPhoneType,Scanner sc) {
+    public static Phone readPhoneSpecification(int optionPhoneType,Scanner sc) {
         System.out.println("Brand: ");
         Brand brand;
-        System.out.println("1." + Brand.LENOVO + "\n2. " + Brand.ASUS + "\n3." + Brand.HUAWEI + "\n4. " + Brand.SAMSUNG);
+        System.out.println("1." + Brand.LENOVO + "\n2." + Brand.ASUS + "\n3." + Brand.HUAWEI + "\n4." + Brand.SAMSUNG);
         int myOption = sc.nextInt();
         switch (myOption) {
             case 1:
@@ -169,7 +169,6 @@ public class Program {
         PhoneDecorator phoneDecorator = new PhoneDecorator(phone);
         System.out.println(phone.toString());
         System.out.println("Initial assemble with normal package: ");
-        phoneDecorator.assemble(Color.GOLD,3,32,"LCD");
         System.out.println(phoneDecorator.toString());
         System.out.println("Assemble with plus package: ");
         PlusDecorator plusDecorator=new PlusDecorator(phoneDecorator);
@@ -240,9 +239,6 @@ public class Program {
                 }
             }
         }
-    }
-
-    private static void openManufacturerWindow(Scanner scanner){
     }
 
     private static void openClientWindow(Scanner scanner){
