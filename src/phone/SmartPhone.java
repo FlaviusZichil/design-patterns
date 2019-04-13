@@ -17,14 +17,6 @@ public class SmartPhone  extends Phone {
     }
 
     @Override
-    public void assemble(Color color, int memory, int storage, String display) {
-        this.setColor(color);
-        this.setMemory(getMemory()+memory);
-        this.setStorage(getStorage()+storage);
-        this.setDisplay(display);
-    }
-
-    @Override
     public void setAccessories() {
         this.setAccessories(this.getAccessories()+2000);
     }

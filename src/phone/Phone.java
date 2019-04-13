@@ -16,11 +16,14 @@ public abstract class Phone implements IPhone {
     private ExtraPackage extraPackage;
 
     @Override
-    public void assemble(Color color, int memory, int storage, String display) {
-        this.color = color;
-        this.memory = memory;
-        this.storage = storage;
-        this.display = display;
+    public void assemble(int price, Brand brand, String model, int storage, int memory, Color color, String display) {
+        this.price=price;
+        this.brand=brand;
+        this.model=model;
+        this.storage=storage;
+        this.memory=memory;
+        this.color=color;
+        this.display=display;
     }
 
     @Override
@@ -35,13 +38,14 @@ public abstract class Phone implements IPhone {
         this.storage = storage;
         this.memory = memory;
         this.display = display;
+        this.extraPackage=ExtraPackage.NORMAL;
     }
 
     public Phone() {
-
+        this.extraPackage=ExtraPackage.NORMAL;
     }
 
-    PhoneType type() {
+    public PhoneType type() {
         return null;
     }
 
@@ -49,7 +53,7 @@ public abstract class Phone implements IPhone {
     public String toString() {
         return "Phone specifications: "+" id: "+id+" price: "
                 +price+" brand: "+brand+" model: "+model+" color: "+color+" storage: "+storage +
-                " memory: "+memory+" display: "+display+" initial package: "+extraPackage+
+                " memory: "+memory+" display: "+display+" extra package: "+extraPackage+
                 " value of accessories: "+accessories;
     }
 
