@@ -53,6 +53,12 @@ public abstract class Phone implements IPhone {
                 " value of accessories: "+accessories;
     }
 
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getPrice() {
         return price;
     }

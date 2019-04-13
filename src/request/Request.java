@@ -1,20 +1,30 @@
 package request;
 
 import client.Client;
+import phone.Phone;
 
 public class Request {
 
+    private Integer requestId;
     private String content;
     private Client client;
-    // aici va fi phone
-    private String phone;
+    private Phone phone;
     private RequestType requestType;
 
-    public Request(String content, Client client, String phone, RequestType requestType) {
+    public Request(Integer id, String content, Client client, Phone phone, RequestType requestType) {
+        this.requestId = id;
         this.content = content;
         this.client = client;
         this.phone = phone;
         this.requestType = requestType;
+    }
+
+    public Integer getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(Integer requestId) {
+        this.requestId = requestId;
     }
 
     public String getContent() {
@@ -33,11 +43,11 @@ public class Request {
         this.client = client;
     }
 
-    public String getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Phone phone) {
         this.phone = phone;
     }
 

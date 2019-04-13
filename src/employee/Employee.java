@@ -21,12 +21,20 @@ public abstract class Employee {
     }
 
     public void verifyCompatibility(Request request){
+        System.out.println("REQUEST TYPE: " + request.getRequestType().toString());
+
         if(this.level.equals(request.getRequestType().toString()) && this.isAvailable){
+
             this.handleRequest(request);
         }
         else{
             if(nextEmployee != null){
-                System.out.println("Request passed");
+                System.out.println("Request passed from " + this.level + " employee to " + nextEmployee.level + " employee.");
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 nextEmployee.verifyCompatibility(request);
             }
         }
@@ -48,6 +56,7 @@ public abstract class Employee {
     protected abstract void handleRequest(Request request);
     protected abstract void sendResponseToClient(Message message, Client client);
 
+
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -61,7 +70,6 @@ public abstract class Employee {
     }
 
     public abstract List<Employee> getSubordinates();
-
 
     public void setSubordonates(List<Employee> subordonates) {
         this.subordinates = subordonates;

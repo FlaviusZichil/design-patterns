@@ -1,17 +1,29 @@
 package department;
 
 import employee.Employee;
+import request.RequestType;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
     private String departmentName;
+    private RequestType departmentType;
     private List<Employee> employees = new ArrayList<>();
 
     public Department(){}
 
-    public Department(String departmentName) {
+    public Department(String departmentName, RequestType departmentType) {
         this.departmentName = departmentName;
+        this.departmentType = departmentType;
+    }
+
+    public RequestType getDepartmentType() {
+        return departmentType;
+    }
+
+    public void setDepartmentType(RequestType departmentType) {
+        this.departmentType = departmentType;
     }
 
     public void addEmployee(Employee employee){
@@ -38,6 +50,7 @@ public class Department {
     public String toString() {
         return "Department{" +
                 "departmentName='" + departmentName + '\'' +
+                ", departmentType=" + departmentType +
                 '}';
     }
 }
