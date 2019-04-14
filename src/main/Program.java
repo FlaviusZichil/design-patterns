@@ -19,6 +19,7 @@ import phone.Phone;
 import request.Request;
 import request.RequestType;
 import request.RequestsQueue;
+import stock.Stock;
 
 import java.util.List;
 import java.util.Scanner;
@@ -163,9 +164,11 @@ public class Program {
 
 
     }
+
     public static void main(String [] args){
         ClassicPhoneFactory classicPhone=new ClassicPhoneFactory();
         Phone phone = classicPhone.getPhone(2500, Brand.LENOVO,"P11", Color.BLACK,4,16,"LDC");
+        Stock.getAvailablePhones().add(phone);
         PhoneDecorator phoneDecorator = new PhoneDecorator(phone);
         System.out.println(phone.toString());
         System.out.println("Initial assemble with normal package: ");
@@ -282,12 +285,34 @@ public class Program {
         }
     }
 
+    private static void getPendingReqests(){
+        if(RequestsQueue.getRequests().size() > 0){
+            for(Request request : RequestsQueue.getRequests()){
+                System.out.println(request.toString());
+            }
+        }
+        else{
+            System.out.println("There are no requests pending!");
+        }
+    }
+
+    private static void getResolvedRequests(){
+        if(RequestsQueue.getResolvedRequests().size() > 0){
+            for(Request request : RequestsQueue.getResolvedRequests()){
+                System.out.println(request.toString());
+            }
+        }
+        else{
+            System.out.println("There are no resolved requests!");
+        }
+    }
+
     private static void openEmployeeWindow(Scanner scanner, Employee questionEmployee, Employee repairEmployee, Employee buyEmployee){
-        System.out.println("=====================================");
-        System.out.println("========      EMPLOYEE      =========");
-        System.out.println("=====================================");
-        System.out.println("Select an option: ");
-        System.out.println("===============");
+        System.out.println("=============================================");
+        System.out.println("                   EMPLOYEE                  ");
+        System.out.println("=============================================");
+        System.out.println("               Select an option:             ");
+        System.out.println("=============================================");
         System.out.println("1. Verify requests compatibility");
         System.out.println("2. Get pending requests");
         System.out.println("3. Get all resolved requests");
@@ -295,7 +320,10 @@ public class Program {
         System.out.println("5. Get all subordinates for Repair Employee");
         System.out.println("6. Get all subordinates for Buy Employee");
         System.out.println("7. Exit");
-        System.out.println("===============");
+        System.out.println("=============================================");
+
+//        System.out.println("AVAILABLE: " + Stock.getAvailablePhones().toString());
+//        System.out.println("SOLD: " + Stock.getSoldPhones().toString());
 
         if(scanner.hasNext()){
             Integer optionEmployee = scanner.nextInt();
@@ -308,27 +336,13 @@ public class Program {
                     break;
                 }
                 case 2:{
-                    if(RequestsQueue.getRequests().size() > 0){
-                        for(Request request : RequestsQueue.getRequests()){
-                            System.out.println(request.toString());
-                        }
-                    }
-                    else{
-                        System.out.println("There are no requests pending!");
-                    }
+                    getPendingReqests();
                     addDelay(2000);
                     openEmployeeWindow(scanner, questionEmployee, repairEmployee, buyEmployee);
                     break;
                 }
                 case 3:{
-                    if(RequestsQueue.getResolvedRequests().size() > 0){
-                        for(Request request : RequestsQueue.getResolvedRequests()){
-                            System.out.println(request.toString());
-                        }
-                    }
-                    else{
-                        System.out.println("There are no resolved requests!");
-                    }
+                    getResolvedRequests();
                     addDelay(2000);
                     openEmployeeWindow(scanner, questionEmployee, repairEmployee, buyEmployee);
                     break;

@@ -5,6 +5,7 @@ import message.Message;
 import message.MessageDispacher;
 import request.Request;
 import request.RequestsQueue;
+import stock.Stock;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,12 +28,20 @@ public class BuyEmployee extends Employee {
         }
         System.out.println("Request resolved by a buyEmployee");
 
+        if(Stock.getAvailablePhones().contains(request.getPhone())){
+            Stock.getSoldPhones().add(request.getPhone());
+            Stock.getAvailablePhones().remove(request.getPhone());
+
+            LocalDate currentDate = LocalDate.now();
+            Message message = new Message("Ati comandat telefonul " + request.getPhone(), request.getClient(), currentDate.toString());
+            sendResponseToClient(message, request.getClient());
+        }
+        else{
+            System.out.println("Phone out of stock!");
+        }
+
         RequestsQueue.getResolvedRequests().add(request);
         RequestsQueue.removeRequestFromQueue(request);
-
-        LocalDate currentDate = LocalDate.now();
-        Message message = new Message("Ati comandat telefonul " + request.getPhone(), request.getClient(), currentDate.toString());
-        sendResponseToClient(message, request.getClient());
     }
 
     @Override
