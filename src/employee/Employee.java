@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Employee {
-    private boolean isAvailable = true;
+
     protected String level;
     private Employee nextEmployee;
     protected List<Employee> subordinates = new ArrayList<>();
@@ -23,8 +23,7 @@ public abstract class Employee {
     public void verifyCompatibility(Request request){
         System.out.println("REQUEST TYPE: " + request.getRequestType().toString());
 
-        if(this.level.equals(request.getRequestType().toString()) && this.isAvailable){
-
+        if(this.level.equals(request.getRequestType().toString())){
             this.handleRequest(request);
         }
         else{
@@ -55,15 +54,6 @@ public abstract class Employee {
 
     protected abstract void handleRequest(Request request);
     protected abstract void sendResponseToClient(Message message, Client client);
-
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
 
     public Employee getNextEmployee() {
         return nextEmployee;

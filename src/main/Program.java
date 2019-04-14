@@ -21,6 +21,7 @@ import request.RequestsQueue;
 import stock.Stock;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Program {
@@ -194,22 +195,31 @@ public class Program {
         Department buyDepartment = new Department("Buy Department", RequestType.BUY);
 
         Employee questionEmployee = new QuestionEmployee();
-        Employee questionEmployee2 = new QuestionEmployee();
         questionEmployee.setDepartment(questionDepartment);
+
+        Employee questionEmployee2 = new QuestionEmployee();
         questionEmployee2.setDepartment(questionDepartment);
 
         Employee repairEmployee = new RepairEmployee();
         repairEmployee.setDepartment(repairDepartment);
         repairEmployee.addSubordinate(questionEmployee);
-        repairEmployee.addSubordinate(questionEmployee2);
+
+        Employee repairEmployee2 = new RepairEmployee();
+        repairEmployee2.setDepartment(repairDepartment);
+        repairEmployee2.addSubordinate(questionEmployee2);
 
         Employee buyEmployee = new BuyEmployee();
         buyEmployee.setDepartment(buyDepartment);
         buyEmployee.addSubordinate(repairEmployee);
 
+        Employee buyEmployee2 = new BuyEmployee();
+        buyEmployee2.setDepartment(buyDepartment);
+        buyEmployee2.addSubordinate(repairEmployee2);
+
         questionEmployee.setNextEmployee(repairEmployee);
         repairEmployee.setNextEmployee(buyEmployee);
-
+        questionEmployee2.setNextEmployee(repairEmployee2);
+        repairEmployee2.setNextEmployee(buyEmployee2);
 
         Scanner scanner = new Scanner(System.in);
         openMainWindow(scanner, questionEmployee, repairEmployee, buyEmployee);
