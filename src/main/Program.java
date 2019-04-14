@@ -36,27 +36,39 @@ public class Program {
                 System.out.println("1.ClassicPhone \n2.FlipPhone\n3.SmartPhone\n");
                 myOption = sc.nextInt();
                 phone = selectAndCreatePhone(myOption, sc);
+                addPhone(phone);
+                printAvailablePhones();
                 break;
             case 2:
-                System.out.println("Decorate your phone with: ");
-                System.out.println("1.ClassicPhone \n2.FlipPhone\n3.SmartPhone\n");
+                System.out.println("Select id phone: ");
+                printAvailablePhones();
                 myOption = sc.nextInt();
-                phone = selectAndCreatePhone(myOption, sc);
+                phone=selectPhoneById(myOption);
+                if(phone==null){
+                    System.out.println("Invalid id! Please select another id");
+                    myOption=sc.nextInt();
+                    phone=selectPhoneById(myOption);
+                }
                 System.out.println("1.Plus package \n 2.Premium package\n 3. All packages");
+                Stock.getAvailablePhones().remove(phone);
                 PhoneDecorator phoneDecorator = null;
                 int optionDecoratePhone = sc.nextInt();
                 switch (optionDecoratePhone) {
                     case 1:
                         phoneDecorator = decorateWithPlusPackage(phone);
+                        Stock.getAvailablePhones().add(phoneDecorator.decoratedPhone);
                         break;
                     case 2:
                         phoneDecorator = decorateWithPremiumPackage(phone);
+                        Stock.getAvailablePhones().add(phoneDecorator.decoratedPhone);
                         break;
                     case 3:
                         phoneDecorator = decorateWithPlusPackage(phone);
                         phoneDecorator = decorateWithPremiumPackage(phone);
+                        Stock.getAvailablePhones().add(phoneDecorator.decoratedPhone);
                         break;
                 }
+                printAvailablePhones();
                 break;
         }
 
@@ -179,6 +191,26 @@ public class Program {
         Stock.getAvailablePhones().add(new SmartPhoneFactory().getPhone(1200, Brand.HUAWEI, "Y9", Color.SILVER, 4000, 64, "IPS "));
         Stock.getAvailablePhones().add(new SmartPhoneFactory().getPhone(1600, Brand.SAMSUNG, "Galaxy A8", Color.BLACK, 4000, 32, "AMOLED"));
 
+    }
+    public static void printAvailablePhones(){
+        System.out.println("==  Our stock ===");
+        for(Phone phone:Stock.getAvailablePhones()){
+            System.out.println(phone.toString());
+        }
+    }
+
+    public static Phone selectPhoneById(int id){
+        for(Phone phone:Stock.getAvailablePhones()){
+            if(phone.getId()==id){
+                return phone;
+            }
+        }
+        return null;
+    }
+    public static void addPhone(Phone phone){
+            if(!Stock.getAvailablePhones().contains(phone)){
+                Stock.getAvailablePhones().add(phone);
+            }
     }
 
     public static void main(String[] args) {
